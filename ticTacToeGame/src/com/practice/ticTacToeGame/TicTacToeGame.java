@@ -12,8 +12,7 @@ public class TicTacToeGame {
 		System.out.println("Welcome to Tic-Tac-Toe Game");
 		board = new char[10];
 		initializeBoard();
-		player = chooseInput();
-		computer = (player == 'X') ? 'O' : 'X';
+		computer = (chooseInput() == 'X') ? 'O' : 'X';
 		printBoard();
 		System.out.println("Player will start the game");
 		char turn = player;
@@ -21,9 +20,8 @@ public class TicTacToeGame {
 		printBoard();
 		sc.close();
 	}
-	//UC4 first move in the game
+	//UC5 and UC4 and first move in the game
 	private static char startGame(char turn) {
-		//sc=new Scanner(System.in);
 		System.out.println("Enter position between 1 to 9: ");
 		int position = sc.nextInt();
 		if(board[position] == ' ') {
@@ -46,13 +44,9 @@ public class TicTacToeGame {
 
 	// UC2 input from user
 	private static char chooseInput() {
-		//sc = new Scanner(System.in);
 		System.out.println("Choose X or O:");
-		char player = sc.next().charAt(0);
-		if (player == 'X')
-			player = 'X';
-		else if (player == 'O')
-			player = 'O';
+		char input = sc.next().charAt(0);
+		player = (input == 'X') ? 'X' : 'O';
 		return player;
 	}
 
