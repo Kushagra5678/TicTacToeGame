@@ -2,30 +2,38 @@ package com.practice.ticTacToeGame;
 import java.util.*;
 public class TicTacToeGame {
 	static Scanner sc;
-	private static String[] board;
+	private static char[] board;
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic-Tac-Toe Game");
-		board=new String[10];
+		board=new char[10];
+		initializeBoard();
+		char player1=chooseInput();
+		char computer=(player1=='X')? 'O': 'X';
 		printBoard(board);
-		String turn=chooseInput();
 		sc.close();
 	}
-	// To get a game view
-	private static void printBoard(String board[]) {
+	// To get a game view UC3
+	private static void printBoard(char[] board) {
 		System.out.println("| " + board[1] + " | " + board[2] + " | " + board[3] + " |");
-		System.out.println("----------------------");
+		System.out.println("--------------");
 		System.out.println("| " + board[4] + " | " + board[5] + " | " + board[6] + " |");
-		System.out.println("----------------------");
+		System.out.println("--------------");
 		System.out.println("| " + board[7] + " | " + board[8] + " | " + board[9] + " |");
 	}
-	private static String chooseInput() {
+	//UC2
+	private static char chooseInput() {
+		sc=new Scanner(System.in);
 		System.out.println("Choose X or O:");
-		String player1=sc.nextLine();
-		if(player1=="X")
-			player1="X";
-		else if(player1=="O")
-			player1="O";
+		char player1=sc.next().charAt(0);
+		if(player1=='X')
+			player1='X';
+		else if(player1=='O')
+			player1='O';
 		return player1;
+	}
+	//UC1
+	private static void initializeBoard() {
+		Arrays.fill(board, ' ');
 	}
 }
 
