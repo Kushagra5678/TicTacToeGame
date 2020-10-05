@@ -19,7 +19,21 @@ public class TicTacToeGame {
 		printBoard();
 		sc.close();
 	}
+	//UC8 game start
 	
+	
+	//UC7 check Winning condition
+	 private static boolean checkWinner(char ch) {
+		 return ((board[1]==ch && board[2]==ch && board[3]==ch) ||
+				 (board[4]==ch && board[5]==ch && board[6]==ch) ||
+				 (board[7]==ch && board[8]==ch && board[9]==ch) ||
+				 (board[1]==ch && board[4]==ch && board[7]==ch) ||
+				 (board[2]==ch && board[5]==ch && board[8]==ch) ||
+				 (board[3]==ch && board[6]==ch && board[9]==ch) ||
+				 (board[1]==ch && board[5]==ch && board[9]==ch) ||
+				 (board[7]==ch && board[5]==ch && board[3]==ch)	 
+				 );
+	 }
 	
 
 	// UC5 first move in the game
