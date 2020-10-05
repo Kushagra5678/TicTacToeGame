@@ -1,4 +1,4 @@
-package com.practice.ticTacToeGame;
+package com.practice.tictactoegame;
 
 import java.util.*;
 
@@ -11,26 +11,32 @@ public class TicTacToeGame {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic-Tac-Toe Game");
 		board = new char[10];
+		char turn;
 		initializeBoard();
-		computer = (chooseInput() == 'X') ? 'O' : 'X';
-		printBoard();
-		System.out.println("Player will start the game");
-		char turn = player;
+		turn = chooseHeadsOrTails() ? player : computer;
+		System.out.println((player == 'X') ? "Player will start the game" : "Computer will start the game");
 		turn = startGame(turn);
 		printBoard();
 		sc.close();
 	}
-	//UC5 and UC4 and first move in the game
+	
+	
+
+	// UC5 first move in the game
 	private static char startGame(char turn) {
 		System.out.println("Enter position between 1 to 9: ");
 		int position = sc.nextInt();
-		if(board[position] == ' ') {
+		if (checkValidMove(position) == true) {
 			board[position] = turn;
-			turn= (turn == player) ? computer : player;
-		}
-		else
+			turn = (turn == player) ? computer : player;
+		} else
 			System.out.println("Invalid move Enter again");
 		return turn;
+	}
+
+	//UC4 check if move is valid
+	private static boolean checkValidMove(int position) {
+		return (board[position] == ' ') ? true : false;
 	}
 
 	// UC3 To get a board view
@@ -42,12 +48,22 @@ public class TicTacToeGame {
 		System.out.println("| " + board[7] + " | " + board[8] + " | " + board[9] + " |");
 	}
 
-	// UC2 input from user
-	private static char chooseInput() {
-		System.out.println("Choose X or O:");
-		char input = sc.next().charAt(0);
-		player = (input == 'X') ? 'X' : 'O';
-		return player;
+	// UC2 and UC6 input from user
+	private static boolean chooseHeadsOrTails() {
+		boolean winToss = false;
+		System.out.println("Choose 0 for head and 1 for tail ");
+		int toss = sc.nextInt();
+		int options = (int)Math.floor(Math.random() * 10)%2;
+		if(toss == options) {
+			player = 'X';
+			computer = 'O';
+			winToss = true;
+		}
+		else {
+			player='O';
+			computer = 'X';
+		}
+		return winToss;
 	}
 
 	// UC1 Initialize board with empty spaces
